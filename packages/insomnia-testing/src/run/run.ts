@@ -34,10 +34,15 @@ const runInternal = async <T>(
     timeout: 5000,
     globals: ['insomnia', 'chai'],
     bail,
-    reporter,
+    reporter: 'mocha-junit-reporter',
+    reporterOptions: {
+        mochaFile: './mocha-tests.xml',
+    },
     // @ts-expect-error https://github.com/DefinitelyTyped/DefinitelyTyped/pull/51770
     fgrep: testFilter,
   });
+
+  console.log(reporter);
 
   const sources = Array.isArray(testSrc) ? testSrc : [testSrc];
   sources.forEach(source => {
