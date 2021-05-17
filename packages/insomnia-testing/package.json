@@ -38,6 +38,7 @@
     "chai": "^4.3.4",
     "mkdirp": "^1.0.4",
     "mocha": "^8.3.2",
+    "mocha-junit-reporter": "^2.0.0",
     "typescript": "^4.2.4"
   },
   "gitHead": "d91e6735a76295166545a42c170328da4ab70dd3"
