@@ -6,7 +6,7 @@ import { logger, noConsoleLog } from '../logger';
 import { loadTestSuites, promptTestSuites } from '../db/models/unit-test-suite';
 import { loadEnvironment, promptEnvironment } from '../db/models/environment';
 
-export type TestReporter = 'dot' | 'list' | 'spec' | 'min' | 'progress';
+export type TestReporter = 'dot' | 'list' | 'spec' | 'min' | 'progress' | 'xunit';
 
 export const reporterTypes: TestReporter[] = [
   'dot',
@@ -14,6 +14,7 @@ export const reporterTypes: TestReporter[] = [
   'min',
   'progress',
   'spec',
+  'xunit',
 ];
 
 export const reporterTypesSet = new Set(reporterTypes);

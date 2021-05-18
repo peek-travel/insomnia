@@ -49,7 +49,7 @@ const makeGenerateCommand = (commandCreator: CreateCommand) => {
 const makeTestCommand = (commandCreator: CreateCommand) => {
   // inso run
   const run = commandCreator('run').description('Execution utilities');
-  const defaultReporter: TestReporter = 'spec';
+  const defaultReporter: TestReporter = 'xunit'; // this is the mocha junit reporter.
 
   // inso run tests
   run

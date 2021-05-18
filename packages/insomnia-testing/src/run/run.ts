@@ -34,10 +34,13 @@ const runInternal = async <T>(
     timeout: 5000,
     globals: ['insomnia', 'chai'],
     bail,
-    reporter: 'mocha-junit-reporter',
-    reporterOptions: {
-        mochaFile: './mocha-tests.xml',
-    },
+    reporter: reporter === 'xunit' ? 'mocha-junit-reporter' : reporter,
+    reporterOptions:
+      reporter === 'xunit'
+        ? {
+            mochaFile: './mocha-tests.xml',
+          }
+        : {},
     // @ts-expect-error https://github.com/DefinitelyTyped/DefinitelyTyped/pull/51770
     fgrep: testFilter,
   });
