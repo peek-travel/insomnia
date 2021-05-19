@@ -63,6 +63,7 @@ const makeTestCommand = (commandCreator: CreateCommand) => {
     )
     .option('-b, --bail', 'abort ("bail") after first test failure')
     .option('--keepFile', 'do not delete the generated test file')
+    .option('-l, --listSuites', 'get the list of Test Suites available')
     .action((identifier, cmd) => {
       let options = getOptions<RunTestsOptions>(cmd, {
         reporter: defaultReporter,

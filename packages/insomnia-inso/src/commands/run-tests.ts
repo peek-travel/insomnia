@@ -3,7 +3,7 @@ import type { GlobalOptions } from '../get-options';
 import { loadDb } from '../db';
 import type { UnitTest, UnitTestSuite } from '../db/models/types';
 import { logger, noConsoleLog } from '../logger';
-import { loadTestSuites, promptTestSuites } from '../db/models/unit-test-suite';
+import { loadTestSuites, promptTestSuites, listTestSuites } from '../db/models/unit-test-suite';
 import { loadEnvironment, promptEnvironment } from '../db/models/environment';
 
 export type TestReporter = 'dot' | 'list' | 'spec' | 'min' | 'progress' | 'xunit';
@@ -25,6 +25,7 @@ export type RunTestsOptions = GlobalOptions & {
   bail?: boolean;
   keepFile?: boolean;
   testNamePattern?: string;
+  listSuites?: boolean;
 };
 
 function validateOptions({ reporter }: Partial<RunTestsOptions>): boolean {
@@ -60,6 +61,12 @@ export async function runInsomniaTests(
     workingDir,
     appDataDir,
   });
+
+  if (options.listSuites) {
+    const suites = await listTestSuites(db);
+    suites.forEach(suite => console.log(suite));
+    return false;
+  }
 
   // Find suites
   const suites = identifier ? loadTestSuites(db, identifier) : await promptTestSuites(db, !!ci);

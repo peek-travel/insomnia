@@ -42,6 +42,35 @@ export const loadTestSuites = (
   const result = loadUnitTestSuite(db, identifier);
   return result ? [result] : [];
 };
+/**
+ * List the test Suite available
+ * @param db
+ * @returns
+ */
+export const listTestSuites = async (
+  db: Database,
+): Promise<string[]> => {
+  const choices = db.ApiSpec.map(spec => [
+    getDbChoice(generateIdIsh(spec), spec.fileName),
+    ...db.UnitTestSuite.filter(
+      suite => suite.parentId === spec.parentId,
+    ).map(suite =>
+      getDbChoice(generateIdIsh(suite), suite.name, {
+        indent: 1,
+      }),
+    ),
+  ]);
+
+  if (!choices.length) {
+    return [];
+  }
+
+  const suites: string[] = [];
+  choices.forEach(choice => {
+    choice.forEach(suite => suite.name.startsWith('uts') ? suites.push(suite.value) : null);
+  });
+  return suites;
+};
 export const promptTestSuites = async (
   db: Database,
   ci: boolean,
