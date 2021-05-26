@@ -39,6 +39,8 @@
     "mkdirp": "^1.0.4",
     "mocha": "^8.3.2",
     "mocha-junit-reporter": "^2.0.0",
+    "mocha-multi": "^1.1.3",
+    "mochawesome": "^6.2.2",
     "typescript": "^4.2.4"
   },
   "gitHead": "d91e6735a76295166545a42c170328da4ab70dd3"

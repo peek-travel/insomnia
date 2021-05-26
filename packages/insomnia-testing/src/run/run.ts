@@ -30,16 +30,34 @@ const runInternal = async <T>(
   global.insomnia = new Insomnia(options);
   global.chai = chai;
 
+  // Peek reporter options
+  const reporterOptionsMochaMulti = {
+    'mocha-junit-reporter': {
+      stdout: './mocha-junit-reporter/console.log',
+      options: {
+        mochaFile: './mocha-tests.xml',
+        attachments: true,
+      },
+    },
+    mochawesome: {
+      stdout: './mochawesome/console.log',
+      options: {
+        reportDir: './mochawesome',
+        reportFileName: 'report',
+        quiet: true,
+      },
+    },
+    spec: '-',
+  };
+
   const mocha: Mocha = new Mocha({
     timeout: 5000,
     globals: ['insomnia', 'chai'],
     bail,
-    reporter: reporter === 'xunit' ? 'mocha-junit-reporter' : reporter,
+    reporter: reporter === 'xunit' ? 'mocha-multi' : reporter,
     reporterOptions:
       reporter === 'xunit'
-        ? {
-            mochaFile: './mocha-tests.xml',
-          }
+        ? reporterOptionsMochaMulti
         : {},
     // @ts-expect-error https://github.com/DefinitelyTyped/DefinitelyTyped/pull/51770
     fgrep: testFilter,
