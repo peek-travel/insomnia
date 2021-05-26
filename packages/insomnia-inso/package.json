@@ -67,6 +67,7 @@
     "insomnia-plugin-cookie-jar": "2.2.35",
     "insomnia-plugin-core-themes": "2.2.35",
     "insomnia-plugin-file": "2.2.35",
+    "insomnia-plugin-gql-fragments": "1.0.10",
     "insomnia-plugin-hash": "2.2.35",
     "insomnia-plugin-jsonpath": "2.2.35",
     "insomnia-plugin-now": "2.2.35",
