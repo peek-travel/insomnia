@@ -51,7 +51,7 @@ const runInternal = async <T>(
   };
 
   const mocha: Mocha = new Mocha({
-    timeout: 5000,
+    timeout: 15000,
     globals: ['insomnia', 'chai'],
     bail,
     reporter: reporter === 'xunit' ? 'mocha-multi' : reporter,
